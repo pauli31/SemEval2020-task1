@@ -1,0 +1,9 @@
+.idea/
+data/test-data/english/
+data/test-data/german/
+data/test-data/latin/
+data/test-data/swedish/
+data/tmp/
+data/embedding_export
+sense/
+*.vec
