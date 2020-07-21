@@ -1,5 +1,5 @@
 
-###### SemEval2020 Task1 - VecMap
+# SemEval2020 Task1 - VecMap
 
 - The embeddings have been mapped using the VecMap tool: https://github.com/artetxem/vecmap
 
