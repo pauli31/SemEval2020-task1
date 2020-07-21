@@ -42,6 +42,12 @@ If you use this software for academic research, please cite the following paper
   publisher = "Association for Computational Linguistics"
 }
 ```
+
+Licence:
+--------
+This work is licensed under a Creative Commons Attribution 4.0 International Licence. Licence
+details: http://creativecommons.org/licenses/by/4.0/.
+
 Contact:
 --------
 {ondfa, pribanp, taylor, sidoj}@kiv.zcu.cz
