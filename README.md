@@ -23,6 +23,8 @@ Usage:
 The **cca** method can be run from file 
 `cca/main.py` the parameters of the method must be changed directly in source code in `cca/compare.py`
 
+For orthogonal transformation please see folder **vecmap**
+
 Publication:
 --------
 
