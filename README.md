@@ -72,8 +72,10 @@ If you use this software for academic research, please cite the following papers
 
 Licence:
 --------
-This work is licensed under a Creative Commons Attribution 4.0 International Licence. Licence
-details: http://creativecommons.org/licenses/by/4.0/.
+This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International. Licence
+details: https://creativecommons.org/licenses/by-nc/4.0/.
+
+i.e. for non-comercial usage only.
 
 Contact:
 --------
