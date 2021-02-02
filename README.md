@@ -26,7 +26,7 @@ The **cca** method can be run from file
 Publication:
 --------
 
-If you use this software for academic research, please cite the following paper
+If you use this software for academic research, please cite the following papers
 
 ```
 @inproceedings{uwb-semeval-2020,
@@ -41,6 +41,31 @@ If you use this software for academic research, please cite the following paper
   address = "Barcelona, Spain",
   publisher = "Association for Computational Linguistics"
 }
+
+@inproceedings{DBLP:conf/evalita/PrazakP020,
+  author    = {Ondrej Praz{\'{a}}k and
+               Pavel Prib{\'{a}}n and
+               Stephen Taylor},
+  editor    = {Valerio Basile and
+               Danilo Croce and
+               Maria Di Maro and
+               Lucia C. Passaro},
+  title     = {{UWB} @ DIACR-Ita: Lexical Semantic Change Detection with {CCA} and
+               Orthogonal Transformation},
+  booktitle = {Proceedings of the Seventh Evaluation Campaign of Natural Language
+               Processing and Speech Tools for Italian. Final Workshop {(EVALITA}
+               2020), Online event, December 17th, 2020},
+  series    = {{CEUR} Workshop Proceedings},
+  volume    = {2765},
+  publisher = {CEUR-WS.org},
+  year      = {2020},
+  url       = {http://ceur-ws.org/Vol-2765/paper110.pdf},
+  timestamp = {Wed, 16 Dec 2020 16:53:24 +0100},
+  biburl    = {https://dblp.org/rec/conf/evalita/PrazakP020.bib},
+  bibsource = {dblp computer science bibliography, https://dblp.org}
+}
+
+
 ```
 
 Licence:
