@@ -1,4 +1,4 @@
-# SemEval2020 Task1
+# SemEval2020 Task1 -- CompareWords Framework
 Repository for SemEval 2020 Task 1: Unsupervised Lexical Semantic Change Detection for UWB Team
 
 If you use this software for academic research, [please cite the paper](#publication)
