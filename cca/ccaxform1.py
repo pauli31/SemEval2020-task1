@@ -12,12 +12,13 @@
     and Artexte 
     and Press are relevant references for this version of the algorithm
 """
-from gensim.models import KeyedVectors
-import math
-import numpy as np
-#import random
-import scipy.linalg as sl  #want to use scipy.linalg.svd w/ full_matrices=False
 import sys
+
+import numpy as np
+# import random
+import scipy.linalg as sl  # want to use scipy.linalg.svd w/ full_matrices=False
+from gensim.models import KeyedVectors
+
 
 def transforms(x, y): #x and y are matrices made up of corresponding dict entries
     """
@@ -277,8 +278,6 @@ def main1():
     test timing on normalization
     """
     import timeit
-    from gensim.models import KeyedVectors
-    import math
 
     setups = """\
 import math

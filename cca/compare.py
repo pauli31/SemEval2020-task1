@@ -20,9 +20,9 @@ def main():
     general_folder = 'post-test'
     task_1_dir, task_2_dir, folder_to_zip, zip_file = init_folders(general_folder)
 
-    reverse_emb = True
-    use_nearest_neigbh = False
-    use_bin_thld = True
+    reverse_emb = False
+    use_nearest_neigbh = True
+    use_bin_thld = False
     emb_type = 'w2v'
     emb_dim = 25
     window = 5
@@ -296,22 +296,6 @@ def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold
 
     trans_dict_path = os.path.join(TMP_DIR, 'trans.dict')
     build_transform_dict(src_emb,trg_emb,trans_dict_path, target_words_dict)
-
-    if run_transform is True:
-        if sys.platform == 'linux':
-            cpsep = ':'
-        else:
-            cpsep = ";"
-        # but even with cpsep, this command is system-dependent...
-
-        exit_code = os.spawnvp(os.P_WAIT,
-                               '/usr/lib/jvm/java-11-openjdk-amd64/bin/java', ['-Xms6000000000', '-cp',
-                                                           "CrossLingualSemanticSpaces-0.0.1-SNAPSHOT-jar-with-dependencies.jar" +
-                                                           cpsep + "CCAjar.jar", 'clss.CCA',
-                                                           src_emb_path, trg_emb_path, trans_dict_path, xform,  str(max_links)])
-        if exit_code != 0:
-            print('?exit_code from java=', exit_code, file=sys.stderr)
-            sys.exit(exit_code)
 
     if run_transform is True:
         import ccaxform1 as ccx  # this could be closer to other imports ...
