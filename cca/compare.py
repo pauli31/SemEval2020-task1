@@ -257,16 +257,21 @@ def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold
                                 or set the threshold manually.
     :param use_nearest_neigbhrs: strategy for binary classification, if set to True the parameter use_binary_threshold
                                 must be set to False.
-    :param mean_centering:
-    :param unit_vectors:
-    :param xform:
-    :param max_links:
-    :param run_spearman:
-    :param save_file_ranks:
-    :param save_file_binary:
+
+
+    :param mean_centering: if true word vectors are centered around zero
+    :param unit_vectors: if true word vectors are converted to unit vectors
+    :param xform: path to transformation matrix, set to None to perform fresh transformation, which is recommended
+    :param max_links: maximum number of links (size of vocabulary) that are used for
+    :param run_spearman: set to True only if data for SemEval are used, it calculates the competitions scores, i.e.,
+                        Spearman score and accuracy for the binary task
+    :param save_file_ranks: file where results for ranks will be written, the continuous scores
+    :param save_file_binary: file where results for binary output will be written, the binary outputs
     :param one_minus:
-    :param topn:
-    :return:
+    :param topn: number of top n most similar words for the binary strategies, keep
+
+    :return: spearman score, accuracy, the used binary threshold if use_binary_threshold is used, use_binary_threshold if
+             the use_nearest_neigbhrs strategy is used
     """
 
     # reversing
@@ -603,7 +608,7 @@ def normalize(X, mean_centering=True, unit_vectors=True):
                 axis 0 (rows)       - vectors for words
                 axis 1 (columns)    - elements of word vectors
     :param mean_centering: if true values are centered around zero
-    :param unit_vectors: is true vectors are converted to unit vectors
+    :param unit_vectors: if true vectors are converted to unit vectors
 
     :return: normalized ndarray
     """
