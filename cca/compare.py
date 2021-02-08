@@ -22,10 +22,10 @@ def main():
 
     # ed
     reverse_emb = False
-    use_nearest_neigbh = True
-    use_bin_thld = False
+    use_nearest_neigbh = False
+    use_bin_thld = True
     emb_type = 'w2v'
-    emb_dim = 25
+    emb_dim = 100
     window = 5
     iter = 5
 
