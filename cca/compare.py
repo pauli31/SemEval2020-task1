@@ -20,6 +20,7 @@ def main():
     general_folder = 'post-test'
     task_1_dir, task_2_dir, folder_to_zip, zip_file = init_folders(general_folder)
 
+    # ed
     reverse_emb = False
     use_nearest_neigbh = True
     use_bin_thld = False
