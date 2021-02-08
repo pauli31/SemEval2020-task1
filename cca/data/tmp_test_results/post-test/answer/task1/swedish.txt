@@ -1,5 +1,5 @@
-aktiv	1
-annandag	0
+aktiv	0
+annandag	1
 antyda	1
 bearbeta	1
 bedömande	0
@@ -10,7 +10,7 @@ bröllop	1
 by	0
 central	1
 färg	0
-förhandling	1
+förhandling	0
 gagn	0
 granskare	0
 kemisk	1
@@ -26,6 +26,6 @@ undertrycka	0
 uppfattning	0
 uppfostran	0
 uppläggning	1
-uträtta	0
+uträtta	1
 vaktmästare	0
 vegetation	0

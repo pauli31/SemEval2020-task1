@@ -24,27 +24,30 @@ def main():
     use_nearest_neigbh = False
     use_bin_thld = True
     emb_type = 'w2v'
-    emb_dim = 100
+    emb_dim = 25
     window = 5
     iter = 5
+
+    mean_centering = True
+    unit_vectors = True
 
     acc_list = []
     rho_list = []
 
     # #
-    acc, rho = run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter)
+    acc, rho = run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter, mean_centering, unit_vectors)
     acc_list.append(acc)
     rho_list.append(rho)
 
-    acc, rho = run_german_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter)
+    acc, rho = run_german_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter, mean_centering, unit_vectors)
     acc_list.append(acc)
     rho_list.append(rho)
 
-    acc, rho = run_latin_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter)
+    acc, rho = run_latin_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter, mean_centering, unit_vectors)
     acc_list.append(acc)
     rho_list.append(rho)
 
-    acc, rho = run_swedish_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter)
+    acc, rho = run_swedish_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh, emb_type, emb_dim, window, iter, mean_centering, unit_vectors)
     acc_list.append(acc)
     rho_list.append(rho)
 
@@ -99,7 +102,7 @@ def evaluate_submission_results():
 
 
 def run_swedish_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh,
-                        emb_type, emb_dim, window, iter):
+                        emb_type, emb_dim, window, iter, mean_centering, unit_vectors):
     print('-' * 70)
     print('Swedish')
     save_file = os.path.join(task_2_dir, 'swedish.txt')
@@ -118,9 +121,10 @@ def run_swedish_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_n
     corp_2_emb = os.path.join(EMBEDDINGS_EXPORT_PATH, 'swedish_corpus_2', corp2_emb_file)
 
     target_words = SWEDISH_TEST_TARGET_WORDS
-    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, SWEDISH_TEST_GOLD_TASK_1, SWEDISH_TEST_GOLD_TASK_2,
-                               reverse_emb, use_bin_thld, use_nearest_neigbh, save_file_ranks=save_file, save_file_binary=save_file_binary,
-                               one_minus=True)
+    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, SWEDISH_TEST_GOLD_TASK_1,
+                                                 SWEDISH_TEST_GOLD_TASK_2, reverse_emb, use_bin_thld, use_nearest_neigbh,
+                                                 mean_centering, unit_vectors, save_file_ranks=save_file,
+                                                 save_file_binary=save_file_binary, one_minus=True)
 
     print('Config:')
     print(str(reverse_emb) + '\t' + 'swedish' + '\t' + corp1_emb_file + '\t' + corp2_emb_file + '\t' + str(min_neighb_cnt) +'\t' + str(bin_thld) +
@@ -129,7 +133,7 @@ def run_swedish_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_n
     return acc, rho
 
 def run_latin_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh,
-                      emb_type, emb_dim, window, iter):
+                      emb_type, emb_dim, window, iter, mean_centering, unit_vectors):
     print('-' * 70)
     print('Latin')
     save_file = os.path.join(task_2_dir, 'latin.txt')
@@ -146,9 +150,10 @@ def run_latin_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nea
     corp_2_emb = os.path.join(EMBEDDINGS_EXPORT_PATH, 'latin_corpus_2', corp2_emb_file)
 
     target_words = LATIN_TEST_TARGET_WORDS
-    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, LATIN_TEST_GOLD_TASK_1, LATIN_TEST_GOLD_TASK_2,
-                               reverse_emb, use_bin_thld, use_nearest_neigbh, save_file_ranks=save_file, save_file_binary=save_file_binary,
-                               one_minus=True)
+    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, LATIN_TEST_GOLD_TASK_1,
+                                                 LATIN_TEST_GOLD_TASK_2, reverse_emb, use_bin_thld, use_nearest_neigbh,
+                                                 mean_centering, unit_vectors, save_file_ranks=save_file,
+                                                 save_file_binary=save_file_binary, one_minus=True)
 
     print('Config:')
     print(str(reverse_emb) + '\t' + 'latin' + '\t' + corp1_emb_file + '\t' + corp2_emb_file + '\t' + str(
@@ -159,7 +164,7 @@ def run_latin_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nea
 
 
 def run_german_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh,
-                       emb_type, emb_dim, window, iter):
+                       emb_type, emb_dim, window, iter, mean_centering, unit_vectors):
     print('-' * 70)
     print('German')
     save_file = os.path.join(task_2_dir, 'german.txt')
@@ -176,9 +181,10 @@ def run_german_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_ne
     corp_2_emb = os.path.join(EMBEDDINGS_EXPORT_PATH, 'german_corpus_2', corp2_emb_file)
 
     target_words = GERMAN_TEST_TARGET_WORDS
-    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, GERMAN_TEST_GOLD_TASK_1, GERMAN_TEST_GOLD_TASK_2,
-                                 reverse_emb, use_bin_thld, use_nearest_neigbh, save_file_ranks=save_file, save_file_binary=save_file_binary,
-                                 one_minus=True)
+    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, GERMAN_TEST_GOLD_TASK_1,
+                                                 GERMAN_TEST_GOLD_TASK_2, reverse_emb, use_bin_thld, use_nearest_neigbh,
+                                                 mean_centering, unit_vectors, save_file_ranks=save_file,
+                                                 save_file_binary=save_file_binary, one_minus=True)
 
     print('Config:')
     print(str(reverse_emb) + '\t' + 'german' + '\t' + corp1_emb_file + '\t' + corp2_emb_file + '\t' + str(
@@ -189,7 +195,7 @@ def run_german_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_ne
 
 
 def run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_nearest_neigbh,
-                        emb_type, emb_dim, window, iter):
+                        emb_type, emb_dim, window, iter, mean_centering, unit_vectors):
     print('-' * 70)
     print('English')
     save_file = os.path.join(task_2_dir, 'english.txt')
@@ -205,9 +211,10 @@ def run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_n
     corp_2_emb = os.path.join(EMBEDDINGS_EXPORT_PATH, 'english_corpus_2', corp2_emb_file)
 
     target_words = ENGLISH_TEST_TARGET_WORDS
-    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, ENGLISH_TEST_GOLD_TASK_1, ENGLISH_TEST_GOLD_TASK_2,
-                       reverse_emb, use_bin_thld, use_nearest_neigbh, save_file_ranks=save_file, save_file_binary=save_file_binary,
-                        one_minus=True)
+    rho, acc, bin_thld, min_neighb_cnt = compare(corp_1_emb, corp_2_emb, target_words, ENGLISH_TEST_GOLD_TASK_1,
+                                                 ENGLISH_TEST_GOLD_TASK_2, reverse_emb, use_bin_thld, use_nearest_neigbh,
+                                                 mean_centering, unit_vectors, save_file_ranks=save_file,
+                                                 save_file_binary=save_file_binary, one_minus=True)
 
     print('Config:')
     print(str(reverse_emb) + '\t' + 'english' + '\t' + corp1_emb_file + '\t' + corp2_emb_file + '\t' + str(
@@ -216,12 +223,36 @@ def run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_n
 
     return acc, rho
 
-
+# TODO do README napsat ze hlavni metoda je tahle compare
+# TODO dokumentace compare metody
+# TODO do README pripsat neco kde jdou ziskat data a jak natrenovat embeddingy, vlastne muzu embeddingy
+# TODO nahrat na gapps a dat public link
+# TODO pridat tridu embeddings generator
 def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold_file_task2, reverse, use_binary_threshold,
-            use_nearest_neigbhrs,
+            use_nearest_neigbhrs, mean_centering, unit_vectors,
             xform=None, max_links=100000, run_spearman=True, save_file_ranks=None, save_file_binary=None,
             one_minus=False, topn=100):
-    # delete_tmp_dir()
+    """
+
+    :param src_emb_path:
+    :param trg_emb_path:
+    :param target_words_path:
+    :param gold_file_task1:
+    :param gold_file_task2:
+    :param reverse:
+    :param use_binary_threshold:
+    :param use_nearest_neigbhrs:
+    :param mean_centering:
+    :param unit_vectors:
+    :param xform:
+    :param max_links:
+    :param run_spearman:
+    :param save_file_ranks:
+    :param save_file_binary:
+    :param one_minus:
+    :param topn:
+    :return:
+    """
 
     # reversing
     if reverse is True:
@@ -229,11 +260,16 @@ def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold
         src_emb_path = trg_emb_path
         trg_emb_path = tmp_path
 
-
     print("Running comparison for topn:" + str(topn) + " min_neighbours_count:" + str(use_nearest_neigbhrs) +" use binary threshold:" + str(use_binary_threshold))
 
     # load embeddings and target words
     src_emb, trg_emb = load_word_vectors(src_emb_path, trg_emb_path)
+    if mean_centering is True or unit_vectors is True:
+        src_emb.vectors = normalize(src_emb.vectors, mean_centering, unit_vectors)
+        trg_emb.vectors = normalize(trg_emb.vectors, mean_centering, unit_vectors)
+
+    print("Src emb size:" + str(len(src_emb.vocab)))
+    print("Trg emb size:" + str(len(trg_emb.vocab)))
     target_words_dict, target_words = load_target_words(target_words_path, load_labels=False)
 
     run_transform = False
@@ -243,6 +279,12 @@ def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold
         xform = os.path.join(TMP_DIR, xform)
         run_transform = True
 
+        if os.path.exists(xform):
+            try:
+                os.remove(xform)
+            except Exception as e:
+                print("error when deleting xform:" + str(xform))
+                print("error:" + str(e))
 
     # file with results
     output_file = os.path.basename(src_emb_path) + '-' + os.path.basename(trg_emb_path) + '.ranks'
@@ -271,8 +313,19 @@ def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold
             print('?exit_code from java=', exit_code, file=sys.stderr)
             sys.exit(exit_code)
 
+    if run_transform is True:
+        import ccaxform1 as ccx  # this could be closer to other imports ...
 
-    trans_matrix = load_transform_matrix(xform)
+        # get the transform
+        trans_matrix = ccx.transform_KV(src_emb, trg_emb, target_words_dict, max_links=max_links)
+
+        # could write out the xform file now, if we wanted
+        np.savetxt(xform, trans_matrix, fmt="%.6f")
+    else:
+        # run_transform is false.  pick up xform from file, which
+        # we have already checked for existence
+        trans_matrix = load_transform_matrix(xform)
+
     # similarities used for generating output file
     rank_similarities = []
 
@@ -542,3 +595,27 @@ def init_folders(general_dir):
 
 def zip_folder(folder_to_zip, zip_file):
     shutil.make_archive(zip_file, 'zip', folder_to_zip)
+
+def normalize(X, mean_centering=True, unit_vectors=True):
+    """
+    Normalize given ndarray
+
+    :param X: ndarray representing semantic space,
+                axis 0 (rows)       - vectors for words
+                axis 1 (columns)    - elements of word vectors
+    :param mean_centering: if true values are centered around zero
+    :param unit_vectors: is true vectors are converted to unit vectors
+
+    :return: normalized ndarray
+    """
+    if mean_centering is True:
+        # mean vector and normalization
+        mean = X.sum(0) / X.shape[0]
+        X = X - mean
+
+    if unit_vectors is True:
+        # compute norm
+        # norms = np.sqrt((X ** 2).sum(-1))[..., np.newaxis]
+        norms = np.linalg.norm(X, axis=1).reshape((X.shape[0], 1))
+        X = X / norms
+    return X
