@@ -1,7 +1,17 @@
 # SemEval2020 Task1 -- CompareWords Framework
-Repository for SemEval 2020 Task 1: Unsupervised Lexical Semantic Change Detection for UWB Team
+Original repository for SemEval 2020 Task 1: Unsupervised Lexical Semantic Change Detection for UWB Team
 
 If you use this software for academic research, [please cite the paper](#publication)
+
+See the paper for detailed description of our approach.
+
+The code is utilized for English, German, Swedish and Latin but it can be easily used for other languages.
+
+the core function that perform the transformation with Canonical Correlation Analysis is in file `cca/compare.py` in function
+`compare(...)`. Use this function for other data and languages. See documentation in the code.
+
+The function requires already pre-trained embeddings. The embeddings can be trained using any method.
+You can use the file `cca/embeddings/embeddings_generator.py` for training word embeddings with w2v or fasttext method. 
 
 Requirements:
 --------

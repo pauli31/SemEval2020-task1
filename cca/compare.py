@@ -29,8 +29,9 @@ def main():
     window = 5
     iter = 5
 
-    mean_centering = True
-    unit_vectors = True
+    # Set both to False to reproduce results stated in the papers
+    mean_centering = False
+    unit_vectors = False
 
     acc_list = []
     rho_list = []
@@ -224,25 +225,38 @@ def run_english_default(task_1_dir, task_2_dir, reverse_emb, use_bin_thld, use_n
 
     return acc, rho
 
-# TODO do README napsat ze hlavni metoda je tahle compare
+
 # TODO dokumentace compare metody
-# TODO do README pripsat neco kde jdou ziskat data a jak natrenovat embeddingy, vlastne muzu embeddingy
-# TODO nahrat na gapps a dat public link
-# TODO pridat tridu embeddings generator
 def compare(src_emb_path, trg_emb_path, target_words_path, gold_file_task1, gold_file_task2, reverse, use_binary_threshold,
             use_nearest_neigbhrs, mean_centering, unit_vectors,
             xform=None, max_links=100000, run_spearman=True, save_file_ranks=None, save_file_binary=None,
             one_minus=False, topn=100):
     """
+    The function perform comparison for a two given word embeddings (representing two data/text corpora)
+    a targets words and it decides how much the target words changed their meaning between the two word embeddings (semantic spaces)
 
-    :param src_emb_path:
-    :param trg_emb_path:
-    :param target_words_path:
-    :param gold_file_task1:
-    :param gold_file_task2:
-    :param reverse:
-    :param use_binary_threshold:
-    :param use_nearest_neigbhrs:
+    :param src_emb_path: path to the source word embeddings, must be in the well known word2vec format, i.e., first line contains
+                        number of words and dimension of the embeddings, then each line start word and its corresponding
+                        word vector
+    :param trg_emb_path: path to the target word embeddings, must be in the well known word2vec format, same as for src_emb_path
+    :param target_words_path: path to list of target words, one per line
+    :param gold_file_task1: path to file with gold data for task 1 (i.e. binary classification task)
+                            it is NON-mandatory parameter, it can be set None, must be set only if run_spearman=True
+                            if you not use the function for other data than SemEval set it to None
+    :param gold_file_task2: path to file with gold data for task 2 (i.e. ranking task), NON-mandatory parameter, same as
+                            gold_file_task1
+                            if you not use the function for other data than SemEval set it to None
+    :param reverse: if set to True the source embeddings is swaped with the target, this should not significantly affect
+                    the results
+    :param use_binary_threshold: strategy for binary classification, if set to True the parameter use_nearest_neigbhrs
+                                must be set to False.
+                                This strategy takes all cosine similarities for all words and it computes the average,
+                                the average is then used as a threshold. This strategy assumes that roughly half of the
+                                target words changed their meaning and half did not.
+                                If you plan to use it for other data than SemEval we suggest to use the continous score,
+                                or set the threshold manually.
+    :param use_nearest_neigbhrs: strategy for binary classification, if set to True the parameter use_binary_threshold
+                                must be set to False.
     :param mean_centering:
     :param unit_vectors:
     :param xform:
