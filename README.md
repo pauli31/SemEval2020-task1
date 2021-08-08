@@ -80,7 +80,7 @@ If you use this software for academic research, please cite the following papers
 
 ```
 
-Licence:
+License:
 --------
 This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International. Licence
 details: https://creativecommons.org/licenses/by-nc/4.0/.
